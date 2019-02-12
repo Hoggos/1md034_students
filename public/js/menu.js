@@ -1,0 +1,41 @@
+var food = [{
+        "name": "Big Burger",
+        "image": "https://www.rd.com/wp-content/uploads/2017/07/01-The-Biggest-Burger-in-the-World-Is-1774-Pounds-and-Ready-for-You-to-Order-at-This-Restaurant-Mallies-Sports-Grill-and-Bar-760x506.jpg",
+        "kCal": 10000,
+        "lactose": true,
+        "gluten": false,
+        "burgerClass": 'a',
+    },
+    {
+        "name": "Medium Burger",
+        "image": "https://www.readersdigest.ca/wp-content/uploads/sites/14/2015/11/gourmet-burger-1024x666.jpg",
+        "kCal": 1000,
+        "lactose": true,
+        "gluten": true,
+        "burgerClass": 'b',
+    },
+    {
+        "name": "Small Burger",
+        "image": "http://hamiltonsmallfries.com/wp-content/uploads/2018/03/00100dPORTRAIT_00100_BURST20180304110745937_COVER_edit-1024x768.jpg",
+        "kCal": 100,
+        "lactose": false,
+        "gluten": false,
+        "burgerClass": 'c',
+    },
+    {
+        "name": "XS Burger",
+        "image": "https://cdn4.gbot.me/photos/eG/pt/1517788307/_Small__Burger_at_the_Oak-Burgermeester-20000000016219063-1024x768.jpg",
+        "kCal": 10,
+        "lactose": true,
+        "gluten": false,
+        "burgerClass": 'd',
+    },
+    {
+        "name": "XXS Burger",
+        "image": "https://i.redd.it/vsmms2716dd01.jpg", 
+        "kCal": 1,
+        "lactose": true,
+        "gluten": false,
+        "burgerClass": 'e',
+    }
+]

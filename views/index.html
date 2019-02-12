@@ -4,105 +4,123 @@
 <head>
     <title>Burger bois</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/menu.js" defer></script>
+    <!-- <script src="js/js_script.js" defer></script> -->
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="js/vue_script.js" defer></script>
 </head>
 
 <body>
-    <main>
-        <h1>Välkommen till Burger Bois</h1>
+    <main id="main">
+        <header id="header">
 
-        <section>
-            <h2>Burger selection</h2>
-            <p>Select the best burger we have!!!</p>
+            <img src="https://cdn2-thevladarcompany.netdna-ssl.com/wp-content/uploads/2016/10/protein-in-the-morning-for-super-saiyan-gains-header-1068x438.jpg">
+            <h1>Välkommen till Burger Bois</h1>
+        </header>
 
+        <section id="burgerinfo">
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>It's kind of a meatball</th>
-                        <th>The Inedible</th>
-                        <th>Wait thats not even a burger</th>
-                    </tr>
-                </thead>
+            <div>
+                <h2 id="burgerTitle">
+                    {{ burgerTitle }}
+                </h2>
+            </div>
 
-                <tbody>
-                    <tr>
-                        <td><img src="https://assets.blog.foodnetwork.ca/wp-content/uploads/sites/6/2016/07/dangerous-dans-diner.jpg"
-                                width="300"></td>
-                        <td><img src="https://previews.123rf.com/images/kopitinphoto/kopitinphoto1411/kopitinphoto141100145/33680341-bad-burger-bun-burger-salad-inedible-food.jpg"
-                                width="300"></td>
-                        <td><img src="https://cdn.mos.cms.futurecdn.net/JMeYddCtvXynv2DycagKhA-650-80.jpg" width="300"></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <ul>
-                                <li>It's so tall look at it, don't you want that?</li>
-                                <li>Consists of meatball. And gluten, lots.</li>
+            <div class="burgertable" id="burgers">
 
-                            </ul>
-                        </td>
+                <div v-for="burger in menu" v-bind:class="burger.burgerClass">
+                    <h3>{{burger.name}}</h3>
 
-                        <td>
-                            <ul>
-                                <li>No lid, good luck eating it dummy</li>
-                                <li>Contains no gluten, at least not in the lid haha.</li>
-                                <li>You will need lots of napkins however</li>
-                            </ul>
-                        </td>
+                    <img v-bind:src="burger.image" width="450">
 
-                        <td>
-                            <ul>
-                                <li>Omg that's a baby how did it get on the menu?</li>
-                                <li>I mean it might contain lactose</li>
-                                <li>Don't eat it though</li>
-                            </ul>
+                    <ul>
+                        <li> {{burger.kCal}} Cal</li>
+                        <li v-if="burger.lactose == true"> Contains lactose </li>
+                        <li v-if="burger.gluten == true"> Contains gluten </li>
+                    </ul>
 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                    <input type="checkbox" v-bind:value="burger.name" v-bind:id="burger.burgerClass" v-model="checkedBurgers">
+                    <label v-bind:for="burger.burgerClass"> Select burger </label>
+
+                </div>
+            </div>
 
         </section>
 
-        <section>
-            <h2>Customer info yo</h2>
+        <section id="customerinfo">
+            <h2>Customer info</h2>
             <p>This is where you give us all your personal information.</p>
 
             <section>
-                <h3>Delivery information</h3>
-                <p>
-                    <label for="fullname">Full name</label><br>
-                    <input type="text" id="fullname" name="fn" required="required" placeholder="First name and last name">
-                </p>
-                <p>
-                    <label for="email">E-mail</label><br>
-                    <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
-                </p>
-                <p>
-                    <label for="streetname">Street</label><br>
-                    <input type="text" id="streetname" name="sn" required="required" placeholder="Street name">
-                </p>
-                <p>
-                    <label for="housenumber">House</label><br>
-                    <input type="text" id="housename" name="hn" required="required" placeholder="House number">
-                </p>
+                <form>
+                    <h3>Delivery information</h3>
+                    <p>
+                        <label for="fullname">Full name</label><br>
+                        <input v-model="fullname" type="text" id="fullname" name="fn" required="required" placeholder="First name and last name">
+                    </p>
+                    <p>
+                        <label for="email">E-mail</label><br>
+                        <input v-model="email" type="email" id="email" name="em" required="required" placeholder="E-mail address">
+                    </p>
+                    <p>
+                        <label for="streetname">Street</label><br>
+                        <input v-model="streetname" type="text" id="streetname" name="sn" required="required"
+                            placeholder="Street name">
+                    </p>
+                    <p>
+                        <label for="housenumber">House</label><br>
+                        <input v-model="housenr" type="text" id="housename" name="hn" required="required" placeholder="House number">
+                    </p>
 
-                <p>
-                    <label for="paymentmethod">Payment method</label><br>
-                    <select id="payment" name="pm">
-                        <option>MasteCard</option>
-                        <option>CasterMard</option>
-                        <option>Christer Malm</option>
-                        <option>Mister Calm</option>
-                        <option>Sister Balm</option>
-                    </select>
-                </p>
+                    <p>
+                        <label for="paymentmethod">Payment method</label><br>
+                        <select id="payment" name="pm" v-model="payment">
+                            <option>MasterCard</option>
+                            <option>CasterMard</option>
+                            <option>Christer Malm</option>
+                            <option>Mister Calm</option>
+                            <option>Sister Balm</option><br>
+                        </select>
+                    </p>
 
+                    <p>
+                        <label for="selectgender"> Select gender</label><br>
+
+                        <input type="radio" id="male" value="Male" name="gender" v-model="picked">
+                        <label for="male">Male</label><br>
+
+                        <input type="radio" id="female" value="Female" name="gender" v-model="picked">
+                        <label for="female">Female</label><br>
+
+                        <input type="radio" id="dontprovide" value="Do not wish to provide" checked="checked" name="gender"
+                            v-model="picked">
+                        <label for="dontprovide">Do not wish to provide</label><br>
+                    </p>
+                </form>
+
+                <button v-on:click="showOrder()" type="submit" id="orderbutton"><img src="https://www.themebeta.com/media/cache/728/files/chrome/images/201612/13/38245c11271bff94bfc56151382dac43.jpeg"
+                        width="30">Send money</button>
             </section>
-
         </section>
+
+        <section>
+            <ul v-if="visible">
+                <li>Name: {{ fullname }} </li>
+                <li>E-mail: {{ email }} </li>
+                <li>Street name: {{ streetname }} </li>
+                <li>House number: {{ housenr }} </li>
+                <li>Gender: {{ picked }} </li>
+                <li>Payment: {{ payment }} </li>
+                <li>Order: {{ checkedBurgers }} </li>
+            </ul>
+        </section>
+
     </main>
 
-    <footer></footer>
 </body>
+<footer>
+    &copy; 2019 ayylmayo corp.
+</footer>
 
 </html>
